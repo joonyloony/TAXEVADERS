@@ -383,27 +383,27 @@ let defaultChart = {
     "labels": ["On-Campus Workers", "Off-Campus Workers"],
     "datasets": [inuclaCount,outuclaCount],
     "colors":["pink","black"],
-    "chartname": "defaultchart"
-    // "On-Campus workers": inucla,
-    // "Off-campus workers": outucla,
+    "chartname": "defaultchart",
+    "title":"On-Campus vs Off-Campus Workers"
+
 }
 let yearChart = {
     "labels": ["Undergraduate", "Nontraditional Undergraduate","Graduate", "Post-Graduate"],
     "datasets": [tradund,nontradund,grad,postgrad],
-    "traditional undergrad": tradund,
-    "nontraditional undergrad": nontradund,
-    "graduate": grad,
-    "post-grad":postgrad,
     "chartname": "yearchart"
 }
 let whyjobChart = {
     "labels": ["Parents told me to get a job", "Financial aid did not give me enough money to cover living costs", "For resume experience", "I do work-study with UCLA/it was offered in my financial aid package"],
-    // "On-Campus workers": inucla,
-    // "Off-campus workers": outucla,
+    "chartname": "whyjobchart",
+    //TODO @joonyloony: add in the rest of the chart customizations, like colors, and 'datasets'
+    // "datasets": [tradund,nontradund,grad,postgrad],
+    // "title":"On-Campus vs Off-Campus Workers"
+
 }
 let complaintChart = {
-    // "On-Campus workers": inucla,
-    // "Off-campus workers": outucla,
+    //TODO @joonyloony: add in the rest of the chart customizations, like colors, and 'datasets'
+    // "datasets": [tradund,nontradund,grad,postgrad],
+    // "title":"On-Campus vs Off-Campus Workers"
 }
 
 function populateCharts(chartType){
@@ -421,6 +421,10 @@ function populateCharts(chartType){
             currentData = currentData.filter(data=>data.year=='Undergraduate')
             addChart(whyjobChart,currentData)
             break;
+        // todo: add the rest of the cases here!
+        // case 'Graduate':
+            // 
+        
         case 'defaultchart':
             addChart(defaultChart,currentData)
     }
@@ -454,12 +458,16 @@ function addChart(chartType,dataset){
         //remove the old chart
         myChart.destroy()
 
+        // just a sanity check to make sure the chart is correct
         console.log('this is the current dataset:')
         console.log(dataset)
 
+        // calculate the counts for the chart
         dataset.forEach(data => {
             calculateSums(data)
         })
+
+        // set the chart data based on the chartname
         switch(chartType.chartname){
             case 'yearchart':
                 chartDataSet = [tradund,nontradund,grad,postgrad]
@@ -468,17 +476,12 @@ function addChart(chartType,dataset){
             case 'whyjobChart':
                 chartDataSet = [neccesities,extraincome,parents,finaid,resume,workstudy];
                 break;
+            //todo: add the rest of the levels and cases here!
+            // case 'complaintChart':
         }
     }
-
-
-
-
+    // set the chart data
 // create the new chart here, target the id in the html called "chart"
-
-// bug: need to treat dataSource as an array of objects
-
-
     myChart = new Chart(document.getElementById("chart"), {
         type: 'pie', //can change to 'bar','line' chart or others
         data: {
@@ -501,13 +504,6 @@ function addChart(chartType,dataset){
                 text: 'Survey Respondants'
             },
             onClick(e) {
-                // console.log(e)
-                // const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
-
-                // // Substitute the appropriate scale IDs
-                // const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
-                // const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
-                // console.log(dataX);
             }
         },
 
@@ -527,24 +523,24 @@ document.getElementById("chart").onclick = function (evt) {
 function resetAllCounts(){
         
     //for year
-    tradund =0;
-    nontradund=0;
-    grad=0;
-    postgrad=0;
+    tradund  = 0;
+    nontradund = 0;
+    grad = 0;
+    postgrad = 0;
     //for whyjob
-    neccesities=0;
-    extraincome=0;
-    parents=0;
-    finaid=0;
-    resume=0;
-    workstudy=0;
+    neccesities = 0;
+    extraincome = 0;
+    parents = 0;
+    finaid = 0;
+    resume = 0;
+    workstudy = 0;
     //for helpfulchanges
-    workersalary=0;
-    workstudysalary=0;
-    lowerhours=0;
-    lesstedious=0;
-    hiremore=0;
-    improvebenefits=0;
-    finaidinc=0;
-    jobcloser=0;
+    workersalary = 0;
+    workstudysalary = 0;
+    lowerhours = 0;
+    lesstedious = 0;
+    hiremore = 0;
+    improvebenefits = 0;
+    finaidinc = 0;
+    jobcloser = 0;
 }
