@@ -1,0 +1,351 @@
+body{
+    gap: 70px;
+    background-image: linear-gradient(rgb(255, 193, 226), rgb(255, 255, 255));
+    background-size: 100px;
+}
+
+header{
+    grid-area: header;
+    width: 100%;
+	    height: 125px;
+	    position: relative;
+}
+p{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+
+h1#logo{
+	  top: -10px;
+	  left: 7%;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: 550;
+    font-size: 3rem;
+	  position: absolute;
+    color: rgb(255, 255, 255);
+}
+
+#description{
+    grid-area: description;
+    text-align: center;
+    color: rgb(221, 91, 154);
+    padding-top: 3%;
+    padding-left: 17%;
+    padding-right: 17%;
+    padding-bottom: 5%;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    line-height: 1.5;
+}
+
+#subheading{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#link{
+    color: rgb(0, 0, 0);
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#about{
+    padding-top: 25px;
+    padding-bottom: 5%;
+    padding-left: 70px;
+    padding-right: 70px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    width: 75%;
+    margin: 0 auto;
+}
+#photos{
+    padding-top: 25px;
+    padding-bottom: 5%;
+    padding-left: 70px;
+    padding-right: 70px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    width: 75%;
+}
+
+#footer{
+    grid-area: footer;
+    color: rgb(255, 124, 187);
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: 400;
+    font-size: small;
+    display: block;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+
+
+.main{
+    grid-area: main_content;  
+    padding-left: 10vh;
+    padding-right: 10vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "main_map slideshow";
+    display: grid;
+}
+
+
+#contents{
+    grid-area: content;
+    background-color: white;
+}
+h2{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#the_map{
+    height:80vh;
+    width:110vh;
+    grid-area: main_map;
+}
+.surveybutton{
+    padding: 15px 32px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #c2fbf8;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: rgb(255, 124, 187);
+}
+/* Slideshow container */
+.slideshow-container {
+    grid-area: slideshow;
+    height: 80vh;
+    position: relative;
+    overflow: auto;
+    background: rgb(255, 255, 255);
+  }
+  
+  /* Slides */
+  .mySlides {
+    display: none;
+    padding: 57px;
+    text-align: center;
+    text-justify: auto;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+  }
+
+  .myText {
+    text-align: left;
+    text-justify: auto;
+    font-size: 71%;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -30px;
+    padding: 16px;
+    color: rgb(255, 124, 187);
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    position: absolute;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(4, 18, 0, 0.8);
+    color: rgb(255, 124, 187);
+  }
+  
+  q {font-style: italic;}
+
+
+/* ///// MENU BAR ///// */
+
+nav
+{
+	height: 150px;
+	width: 75%;
+	position: absolute;
+	top: 0;
+	right: 2%;
+	text-align: right;
+}
+
+nav ul#main_menu
+{
+    list-style-type: none;
+    position: absolute;
+    bottom: 45px;
+    right: 5%;
+    z-index: 400;
+    
+}
+
+nav ul#main_menu li
+{
+	display: inline;
+}
+
+nav ul#main_menu li a
+{
+	padding: 14px 14px;
+	letter-spacing: 0px;
+	text-decoration: none;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+	color: rgb(255, 124, 187);
+	font-size: 16px;
+	font-weight: 500;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+}
+
+nav ul#main_menu li a:hover
+{
+	color: black;
+}
+
+nav ul#main_menu li a:after
+{
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	background: #ffffff;
+	width: 0%;
+	content: '.';
+	color: transparent;
+	height: 2px;
+}
+
+nav ul#main_menu li a:hover:after
+{
+	width: 100%;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* turn off overflow */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #c2fbf8;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: rgb(255, 124, 187);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  * {box-sizing:border-box}
+
+
+#subheading{
+    text-align: center;
+}
+ 
+.titler{
+    padding-left: 10vh;
+    padding-right: 10vh;
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 5px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  
+  /* Style the submit button with a specific background color etc */
+  input[type=submit] {
+    padding: 15px 32px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #c2fbf8;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: rgb(255, 124, 187);
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  }
+  
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=submit]:hover {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background-color: #afeae7;
+  }
+  
+  /* Add a background color and some padding around the form */
+  .container1 {
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+  }

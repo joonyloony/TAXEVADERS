@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tax Evaders >:)</title>
+        <!-- hint: remember to change your page title! -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+        <!-- Leaflet's css-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+        <!-- Leaflet's JavaScript-->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="js/papaparse.min.js"></script>
+
+                <!-- Cluster Marker's CSS -->
+                <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+                <!-- Cluster Marker's JavaScript -->
+                <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+        
+
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html"> 
+                <h1 id="logo">Tax Evaders >:D</h1>
+            </a>
+    
+            <nav>
+                <ul id="main_menu">
+                    <li> <button class="surveybutton" id="myBtn">learn more!</button></li>
+                    <li><a href="contact.html">contact us!</a></li>
+                    <li><a href="index.html">home</a></li>
+                    <li><a href="about.html">about us</a></li>
+                    <li class="surveybutton"><a href="https://forms.gle/LYtJZmCtVCqpeRBm9">survey</a></li>
+                   
+               
+                </ul>
+            </nav>
+            
+        </header>
+
+        <div class="main">
+            
+            <div id="the_map"></div>
+            
+            
+           <!-- Slideshow container -->
+        <div class="slideshow-container">
+
+            <!-- Full-width slides/quotes -->
+            <div class="mySlides">
+                <h2>The markers on the map show <br>each student's response about where they work!</h2>
+                
+                <p><b>Please browse through the slides →</b><br><b>← or the markers</b><br>to read each individual's stories</p>
+                <p>Scroll down for more information on our <a href="learnmore.html">project</a> or learn more about <a href="about.html">the creators!</a></p>
+            </div>
+    
+        
+            <!-- Next/prev buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        </div>
+
+        <div id="description">
+            <h1 id="subheading">OUR PROJECT</h1>
+            <p><br>
+                The communities targeted to empower in this survey are UCLA students from any 
+                financial background, who have previously or currently held a job on campus 
+                in order to support themselves. This project is meant to shed light on this 
+                issue and make the UCLA community more aware of the problems caused by balancing
+                a job and academics on working students.
+
+                To learn more about current income tax brackets, click <a href="https://taxfoundation.org/2022-tax-brackets/">here!</a>
+                </p>
+
+            <h1 id="subheading">More information about our surveyed students</h1>
+            <p>Students here at UCLA get jobs for many different reasons: the primary ones are financial burden and extra spending money. See the chart below to hear more about why students get jobs even with the strg</p>
+           
+            
+        </div>
+        <!-- Trigger/Open The Modal -->
+        
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+        
+            <!-- Modal content -->
+            <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2> about this website >:p</h2>
+            <p >Hello! We wanted to create a space for student workers at UCLA 
+                to share their stories and struggles when it comes to working while being
+                a student. Interact with the map to read about the struggles and stories of students and if you are comfortable,
+                <a href="https://forms.gle/LYtJZmCtVCqpeRBm9">take our survey</a> to add your own response!
+            </p>
+
+
+            </div>
+        </div>
+
+        <script src="js/init.js"></script>
+        <div id="footer">
+            Copyright © 2022
+        </div>
+       
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tax Evaders >:0</title>
+        <!-- hint: remember to change your page title! -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      
+
+        <!-- Leaflet's css-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+        <!-- Leaflet's JavaScript-->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="js/papaparse.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html"> 
+                <h1 id="logo">Tax Evaders >:0</h1>
+            </a>
+    
+            <nav>
+                <ul id="main_menu">
+                    <li><a href="contact.html">contact us!</a></li>
+                    <li><a href="index.html">home</a></li>
+                    <li><a href="about.html">about us</a></li>
+                    <li class="surveybutton"><a href="https://forms.gle/LYtJZmCtVCqpeRBm9">survey</a></li>
+                   
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container1">
+            <form action="action_page.php">
+          
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+          
+              <label for="country">Nature of Contact</label>
+              <select id="country" name="country">
+                <option value="suggestion">Suggestions</option>
+                <option value="complaint">Complaints</option>
+                <option value="concerns">Concerns</option>
+                <option value="compliment">Compliments :)</option>
+              </select>
+          
+              <label for="subject">Subject</label>
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          
+              <input type="submit" value="submit">
+          
+            </form>
+          </div>
+
+        <div id="footer">
+            copyright © 2022
+        </div>
+        <script src="js/init.js"></script>
+    </body>
+</html>
