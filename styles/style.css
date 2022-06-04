@@ -11,14 +11,14 @@ header{
 	    position: relative;
 }
 p{
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
 }
 
 
 h1#logo{
 	  top: -10px;
 	  left: 7%;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     font-weight: 550;
     font-size: 3rem;
 	  position: absolute;
@@ -33,17 +33,17 @@ h1#logo{
     padding-left: 17%;
     padding-right: 17%;
     padding-bottom: 5%;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     line-height: 1.5;
 }
 
 #subheading{
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
 }
 
 #link{
     color: rgb(0, 0, 0);
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
 }
 
 #about{
@@ -51,7 +51,7 @@ h1#logo{
     padding-bottom: 5%;
     padding-left: 70px;
     padding-right: 70px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     width: 75%;
     margin: 0 auto;
 }
@@ -60,14 +60,14 @@ h1#logo{
     padding-bottom: 5%;
     padding-left: 70px;
     padding-right: 70px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     width: 75%;
 }
 
 #footer{
     grid-area: footer;
     color: rgb(255, 124, 187);
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     font-weight: 400;
     font-size: small;
     display: block;
@@ -94,7 +94,7 @@ h1#logo{
     background-color: white;
 }
 h2{
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
 }
 
 #the_map{
@@ -121,7 +121,7 @@ h2{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: "Comic Sans MS", "Comic Sans";
   color: rgb(255, 124, 187);
 }
 /* Slideshow container */
@@ -139,13 +139,13 @@ h2{
     padding: 57px;
     text-align: center;
     text-justify: auto;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
   }
 
   .myText {
     text-align: left;
     text-justify: auto;
-    font-size: 71%;
+    font-size: 100%;
   }
   
   /* Next & previous buttons */
@@ -211,7 +211,7 @@ nav ul#main_menu li a
 	padding: 14px 14px;
 	letter-spacing: 0px;
 	text-decoration: none;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
 	color: rgb(255, 124, 187);
 	font-size: 16px;
 	font-weight: 500;
@@ -301,7 +301,7 @@ nav ul#main_menu li a:hover:after
 input[type=text], select, textarea {
     margin-left: 20px;
     margin-right: 20px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     width: 100%; /* Full width */
     padding: 12px; /* Some padding */ 
     border: 5px solid #ccc; /* Gray border */
@@ -331,13 +331,13 @@ input[type=text], select, textarea {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: "Comic Sans MS", "Comic Sans";
   }
   
   
   /* When moving the mouse over the submit button, add a darker green color */
   input[type=submit]:hover {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
     background-color: #afeae7;
   }
   
@@ -346,6 +346,6 @@ input[type=text], select, textarea {
     border-radius: 25px;
     background-color: #f2f2f2;
     padding: 20px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", "Comic Sans";
 
   }
