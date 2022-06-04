@@ -1,3 +1,5 @@
+
+const boundaryLayer = "data/ucla.geojson"
 let mapOptions = {'center': [34.0709,-118.444],'zoom':15}
 
 let currrentCampus =0;
@@ -12,15 +14,20 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgzJYv5patSDAIUAzaoz-tC7pCmrNRCJEopbJlOAVuLnkw0GFzTycLxJCwPh-pQqL4UItpy27X4prg/pub?output=csv"
+//clearance to form <- 0
 const q1 = 'Do you currently have a job on campus/off campus, or previously held a job on campus while you were a student?';
-const q2 = 'Why did you get a job?';
-const q3 = 'What change with regards to student worker benefits would be most helpful to YOU?';
-const q4 = 'How has having a job affected your life at UCLA?';
-const q5 ='If you are no longer working, why did you quit?'
-const q6 = 'What is your greatest grievance with your current/previously held job?';
-const inoutstate = 'What kind of student are you?';
-const year = 'What college situation best describes your own?';
-const work='What is your job title and company?';
+//background -> second level click on this chart
+const q2 = 'Why did you get a job?'; //mc 
+//current feelings at having a job at ucla xP ->third level (can choose between the two)
+const q3 = 'What change with regards to student worker benefits would be most helpful to YOU?'; //mc
+const q4 = 'How has having a job affected your life at UCLA?'; //frq
+//complaints >:( ->third level (can choose between the two)
+const q5 ='If you are no longer working, why did you quit?' //frq
+const q6 = 'What is your greatest grievance with your current/previously held job?'; //frq
+//demographics for marker ->FIRST level information
+const inoutstate = 'What kind of student are you?'; //mc (in state/oos etc)
+const year = 'What college situation best describes your own?'; //mc (undergrad/grad etc) <- more important
+const work='What is your job title and company?'; //frq
 var questions = [q1,q2,q3,q4,q5,q6];
 var lats = new Array();
 var lngs = new Array();
@@ -28,9 +35,36 @@ var allMarkers = new Array();
 
 let marker = L.markerClusterGroup();
 
+//instructions/intro in modal xD
+// step 0 is show all data in chart on right with year variable **
+
+// https://prod.liveshare.vsengsaas.visualstudio.com/join?ED028B505A8F3DD44E5D56DE53E519B44455
+
+
+// step 1 divide information into ucla / non ucla <- geojson  **
+
+    // show undergrad or not? make click ***
+
+// step 2  why'd you get the job?? (MC) *
+    // pie chart or bar chart
+
+// step 3
+    // show summarized chart*/show table info for feelings* and compliants *
+
+
+
+
 lats.push(34.0709);
 lngs.push(-118.444);
 //LOAD RESPONSES
+
+
+
+
+// step 3: show summarized chart(q3) and table (q4, q5/q6)
+document.createElement('table')
+
+
 
 function loadData(url){
     Papa.parse(url, {
@@ -173,4 +207,4 @@ window.onclick = function(event) {
     
   }
 }
-document.getElementById("myBtn").click() // simulate click to start modal
+//document.getElementById("myBtn").click() // simulate click to start modal
