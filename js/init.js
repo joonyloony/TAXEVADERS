@@ -383,8 +383,6 @@ function populateCharts(chartType){
         case 'default':
             addChart(defaultChart,allData)
     }
-    
-
 }
 
 
