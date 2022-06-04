@@ -355,7 +355,8 @@ function changeCharts(target){
 let defaultChart = {
     "labels": ["On-Campus Workers", "Off-Campus Workers"],
     "datasets": [inucla,outucla],
-    "colors":["pink","black"]
+    "colors":["pink","black"],
+    "chartype": "defaultchart"
     // "On-Campus workers": inucla,
     // "Off-campus workers": outucla,
 }
@@ -395,12 +396,22 @@ let myChart
 function addChart(chartType,dataSource){
     // reset counts
     resetAllCounts()
-    console.log(chartType)
-    console.log(dataSource)
-// create the new chart here, target the id in the html called "chart"
-    dataSource.forEach(data => {
+    // console.log(chartType)
+    // console.log(dataSource)
+    if (chartType == "defaultChart"){
+        chartType.datasets = dataSource.datasets
+        console.log('this is the default data')
+        console.log(chartType.datasets)
+    }
+    else{
+        dataSource.forEach(data => {
             calculateSums(data)
-    })
+        })
+    }
+// create the new chart here, target the id in the html called "chart"
+
+// bug: need to treat dataSource as an array of objects
+
 
     myChart = new Chart(document.getElementById("chart"), {
         type: 'pie', //can change to 'bar','line' chart or others
