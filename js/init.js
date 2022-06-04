@@ -413,7 +413,7 @@ function addChart(chartType,dataSource){
                 backgroundColor: chartType.colors,
                 data: chartType.datasets
                 }
-        ]
+            ]
         },
         options: {
             responsive: true, //turn on responsive mode changes with page size
