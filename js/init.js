@@ -27,8 +27,8 @@ const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgzJYv5patSDAI
 const onCampusLegendHTML = document.getElementById("onCampusLegend");
 const offCampusLegendHtml = document.getElementById("offCampusLegend");
 
-let currentChart = 'default'
-
+let currentChart = 'defaultchart'
+let previousChart = ''
 // https://stackoverflow.com/questions/31790344/determine-if-a-point-reside-inside-a-leaflet-polygon
 let uclaboundary 
 
@@ -73,10 +73,9 @@ const work='What is your job title and company?'; //frq
 // chart part 1. add variables for keeping track of the count for the charts
 let instate = 0;
 let outstate = 0;
-let international =0;
-let undocumented=0;
-let inucla =0 ;
-let outucla = 0;
+let international = 0;
+let undocumented = 0;
+
 
 
 var questions = [q1,q2,q3,q4,q5,q6];
@@ -156,11 +155,15 @@ function processData(results){
     })
     offCampus.addTo(map);
     onCampus.addTo(map);
-
-    changeCharts(currentChart)
+    currentData = allData
+    populateCharts(currentChart)
     
 }
 ///////////// global counters ///////////////
+
+// for initial view of in or out of ucla
+let inuclaCount = 0;
+let outuclaCount = 0;
 
 //for year
 let tradund =0;
@@ -290,14 +293,14 @@ function addMarker(data){
     let inUclaText = '';
     if (surveyData.inucla == 'yes'){
         inUclaText = "On-Campus student worker"
-        inucla+=1;
+        inuclaCount+=1;
         circleMarkerOptions.fillColor = "pink"
         onCampus.addLayer(L.circleMarker([data.lat,data.lng],circleMarkerOptions).bindPopup(`<p> ${inUclaText} and ${(surveyData["year"])} student</p><p>${surveyData["work"]}</p>`))
 
     }
     else{
         inUclaText = "Off-Campus worker"
-        outucla+=1;
+        outuclaCount+=1;
         circleMarkerOptions.fillColor = "black"
         offCampus.addLayer(L.circleMarker([data.lat,data.lng],circleMarkerOptions).bindPopup(`<p> ${inUclaText} and ${(surveyData["year"])} student</p><p>${surveyData["work"]}</p>`))
     }
@@ -340,34 +343,61 @@ window.onclick = function(event) {
 
     
   }
-
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
 function changeCharts(target){
     currentChart = target;
     console.log('changing chart to '+ currentChart)
-    populateCharts(currentChart)
+    let theChartTarget = chartTriggers[target]
+    console.log(theChartTarget)
+    // if (chartTriggers.includes(target)){
+        
+    //     return chartTriggers.indexOf(target)
+    // }
+    // addChart(theChartTarget,target)
     // switch(target){
     //     case 'q3':
     //         currentChart = 'q3'
     // }
-    // populateCharts()
+    populateCharts(target)
+}
+
+let chartTriggers ={
+    "defaultChart":"",
+    "On-Campus Workers" : "yearchart",
+    "Off-Campus Workers":"yearchart",
+    "Parents told me to get a job":"whyjobChart",
+    "Financial aid did not give me enough money to cover living costs": "whyjobChart",
+    "For resume experience": "whyjobChart",
+    "I do work-study with UCLA/it was offered in my financial aid package": "whyjobChart",
+    "Greatest grievance with current/previously held job": "complaintsChart",
+    "Less tedious work":"complaintChart",
+    "Hire more people so we aren't short-staffed":"complaintChart",
+    "Improve student worker benefits":"complaintChart",
+    "Increase my financial aid":"complaintChart",
+    "Would like a job closer to my home":"complaintChart"
 }
 
 let defaultChart = {
     "labels": ["On-Campus Workers", "Off-Campus Workers"],
-    "datasets": [inucla,outucla],
+    "datasets": [inuclaCount,outuclaCount],
     "colors":["pink","black"],
-    "chartype": "defaultchart"
+    "chartname": "defaultchart"
     // "On-Campus workers": inucla,
     // "Off-campus workers": outucla,
 }
 let yearChart = {
+    "labels": ["Undergraduate", "Nontraditional Undergraduate","Graduate", "Post-Graduate"],
+    "datasets": [tradund,nontradund,grad,postgrad],
     "traditional undergrad": tradund,
     "nontraditional undergrad": nontradund,
     "graduate": grad,
     "post-grad":postgrad,
-    "chartype": "yearchart"
+    "chartname": "yearchart"
 }
 let whyjobChart = {
+    "labels": ["Parents told me to get a job", "Financial aid did not give me enough money to cover living costs", "For resume experience", "I do work-study with UCLA/it was offered in my financial aid package"],
     // "On-Campus workers": inucla,
     // "Off-campus workers": outucla,
 }
@@ -377,13 +407,22 @@ let complaintChart = {
 }
 
 function populateCharts(chartType){
+    console.log('populateCharts: '+chartType)
     switch (chartType){
-        case 'Off-Campus Student Worker':
-            addChart(yearChart,offCampus)
-        case 'On-Campus Student Worker':
-            addChart(yearChart,onCampus)
-        case 'default':
-            addChart(defaultChart,allData)
+        case 'Off-Campus Workers':
+            currentData = currentData.filter(data=>data.inucla=='no')
+            addChart(yearChart,currentData)
+            break;
+        case 'On-Campus Workers':
+            currentData = currentData.filter(data=>data.inucla=='yes')
+            addChart(yearChart,currentData)
+            break;
+        case 'Undergraduate':
+            currentData = currentData.filter(data=>data.year=='Undergraduate')
+            addChart(whyjobChart,currentData)
+            break;
+        case 'defaultchart':
+            addChart(defaultChart,currentData)
     }
 }
 
@@ -393,22 +432,48 @@ function populateCharts(chartType){
 // }
 
 let myChart
-
-function addChart(chartType,dataSource){
+let currentData
+function addChart(chartType,dataset){
     // reset counts
     resetAllCounts()
-    // console.log(chartType)
-    // console.log(dataSource)
-    if (chartType.chartype == "defaultChart"){
-        chartType.datasets = dataSource.datasets
-        console.log('this is the default data')
-        console.log(chartType.datasets)
+    
+    
+    console.log('in add chart for:')
+    console.log(chartType)
+
+    let chartDataSet
+    if (chartType.chartname == "defaultchart"){
+        // albert: this sets the default chart to inuclacount and outuclacount after the data loads
+        chartDataSet = [inuclaCount,outuclaCount]
     }
     else{
-        dataSource.forEach(data => {
+        // set the current chart to previous chart so you can go back to it
+        previousChart = currentChart;
+        currentChart = chartType.chartname;
+
+        //remove the old chart
+        myChart.destroy()
+
+        console.log('this is the current dataset:')
+        console.log(dataset)
+
+        dataset.forEach(data => {
             calculateSums(data)
         })
+        switch(chartType.chartname){
+            case 'yearchart':
+                chartDataSet = [tradund,nontradund,grad,postgrad]
+                console.log(chartDataSet)
+                break;
+            case 'whyjobChart':
+                chartDataSet = [neccesities,extraincome,parents,finaid,resume,workstudy];
+                break;
+        }
     }
+
+
+
+
 // create the new chart here, target the id in the html called "chart"
 
 // bug: need to treat dataSource as an array of objects
@@ -423,7 +488,7 @@ function addChart(chartType,dataSource){
                 {
                 label: "Count",
                 backgroundColor: chartType.colors,
-                data: chartType.datasets
+                data: chartDataSet
                 }
             ]
         },
@@ -456,7 +521,7 @@ document.getElementById("chart").onclick = function (evt) {
     // console.log(activePoints[0].index)
     var label = myChart.data.labels[activePoints[0].index];
     // var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
-    // changeCharts(label)
+    changeCharts(label)
 };
 
 function resetAllCounts(){
