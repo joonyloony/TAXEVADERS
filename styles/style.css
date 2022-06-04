@@ -349,3 +349,7 @@ input[type=text], select, textarea {
     font-family: "Comic Sans MS", "Comic Sans";
 
   }
+  .lists{
+    text-align: left;
+    font-size: small;
+  }
