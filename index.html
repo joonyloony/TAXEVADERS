@@ -22,7 +22,11 @@
                 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
                 <!-- Cluster Marker's JavaScript -->
                 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+        <!-- Adding the leaflet pip library  -->
+        <script src='https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js'></script>
         
+        <!-- step 1. add the Chart.js library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
 
     </head>
 
@@ -49,34 +53,17 @@
         <div class="main">
             
             <div id="the_map"></div>
-            
-            
-           <!-- Slideshow container -->
-        <div class="slideshow-container">
-
-            <!-- Full-width slides/quotes -->
-            <div class="mySlides">
-                <h2>Each marker on the map shows each respondant's workplace location as well as their survey responses<br>Our questions include:</h2>
-                <div class="lists">
-                    <p >
-                        -Do you currently have a job on campus/off campus, or previously held a job on campus while you were a student?
-                        <br>-Why did you get a job?
-                        <br>-What change with regards to student worker benefits would be most helpful to YOU?
-                        <br>-How has having a job affected your life at UCLA?
-                        <br>-If you are no longer working, why did you quit?
-                        <br>-What is your greatest grievance with your current/previously held job?<br>
-                        <br>
-                    </p>
+            <div id="information">
+                <div id="chart-title">
+                    <h2><br><br><br></h2>
                 </div>
-                
-               
-                <p><b>Scroll down for more information on our project or learn more about <a href="about.html">the creators!</a></p>
+                <div class="chart-container" style="width:100%">
+                    <canvas id="chart"></canvas>
             </div>
-    
-        
-            <!-- Next/prev buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+           
+            
+            
+     
         </div>
         </div>
 
@@ -88,12 +75,15 @@
                 in order to support themselves. This project is meant to shed light on this 
                 issue and make the UCLA community more aware of the problems caused by balancing
                 a job and academics on working students.
-
-                To learn more about current income tax brackets, click <a href="https://taxfoundation.org/2022-tax-brackets/">here!</a>
                 </p>
 
             <h1 id="subheading">More information about our surveyed students</h1>
-            <p>Students here at UCLA get jobs for many different reasons: the primary ones are financial burden and extra spending money. See the chart below to hear more about why students get jobs even with the strg</p>
+            <p>Students here at UCLA get jobs for many different reasons, as evidenced by clicking through
+                the interactive map. This website creates a place for student workers to share their stories and
+                struggles, and show that if you are struggling with having a job, you are not alone. Many others face 
+                the same challenges as you, and there are resources to help you succeed! <a href="https://counseling.ucla.edu/">CAPS</a>
+                is an option for UCLA students.
+            </p>
            
             
         </div>
@@ -108,8 +98,11 @@
             <h2> about this website >:p</h2>
             <p >Hello! We wanted to create a space for student workers at UCLA 
                 to share their stories and struggles when it comes to working while being
-                a student. Interact with the map to read about the struggles and stories of students and if you are comfortable,
-                <a href="https://forms.gle/LYtJZmCtVCqpeRBm9">take our survey</a> to add your own response!
+                a student. To read these students' stories, interact with the map by clicking on the chart, based on if you 
+                would like to view stories from students working on or off campus, and then based on 
+                why a student got a job. If you are comfortable with it, 
+                <a href="https://forms.gle/LYtJZmCtVCqpeRBm9">take our survey</a> to add your own response! Scroll down
+                for more information!
             </p>
 
 

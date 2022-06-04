@@ -353,3 +353,8 @@ input[type=text], select, textarea {
     text-align: left;
     font-size: small;
   }
+
+  #information{
+    background: #f2f2f2;
+    
+  }
