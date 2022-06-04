@@ -364,7 +364,8 @@ let yearChart = {
     "traditional undergrad": tradund,
     "nontraditional undergrad": nontradund,
     "graduate": grad,
-    "post-grad":postgrad
+    "post-grad":postgrad,
+    "chartype": "yearchart"
 }
 let whyjobChart = {
     // "On-Campus workers": inucla,
@@ -398,7 +399,7 @@ function addChart(chartType,dataSource){
     resetAllCounts()
     // console.log(chartType)
     // console.log(dataSource)
-    if (chartType == "defaultChart"){
+    if (chartType.chartype == "defaultChart"){
         chartType.datasets = dataSource.datasets
         console.log('this is the default data')
         console.log(chartType.datasets)
