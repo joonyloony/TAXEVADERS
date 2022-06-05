@@ -185,7 +185,7 @@ nav ul#main_menu
 
 nav ul#main_menu li
 {
-	display: inline;
+	display: inline; 
 }
 
 nav ul#main_menu li a
@@ -215,7 +215,7 @@ nav ul#main_menu li a:after
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	background: #ffffff;
+	/*background: #ffffff;*/
 	width: 0%;
 	content: '.';
 	color: transparent;
