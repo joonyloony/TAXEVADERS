@@ -6,6 +6,8 @@ body{
     /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
     grid-template-areas: "header" "main_content" "footer";
     font-family: "Comic Sans MS", "Comic Sans";
+    margin-left: 30px;
+    margin-right:50px;
 }
 
 header{
@@ -43,6 +45,11 @@ h1#logo{
 
 #subheading{
     font-family: "Comic Sans MS", "Comic Sans";
+    color: #ba3155;
+}
+#subheading2{
+  font-family: "Comic Sans MS", "Comic Sans";
+  color: #FF6790;
 }
 
 #link{
@@ -197,7 +204,7 @@ nav ul#main_menu li a
 
 nav ul#main_menu li a:hover
 {
-	color: black;
+	color: #FF6790;
 }
 
 nav ul#main_menu li a:after
@@ -255,7 +262,7 @@ nav ul#main_menu li a:hover:after
   
   .close:hover,
   .close:focus {
-    color: black;
+    color: #c03b5e;
     text-decoration: none;
     cursor: pointer;
   }
@@ -265,6 +272,9 @@ nav ul#main_menu li a:hover:after
 
 #subheading{
     text-align: center;
+}
+#subheading3{
+  text-align: center;
 }
  
 .titler{
@@ -362,5 +372,18 @@ input[type=text], select, textarea {
   #backbutton{
     display: none;
   }
+  #myModal{
+    text-align: center;
+  }
   
+  a:hover{
+    background-color: #afeae7;
+    transition-duration: .5s;
+    border-radius: 25px;
+    text-decoration:none !important;
+    color:#FF6790;
+  }
   
+  a{
+      
+  }

@@ -171,7 +171,7 @@ function processData(results){
     onCampus.addTo(map);
     currentData = allData
     populateCharts(currentChart)
-    
+    document.getElementById("backbutton").style.display = 'none';
 }
 ///////////// global counters ///////////////
 
@@ -617,6 +617,10 @@ document.getElementById("chart").onclick = function (evt) {
     changeCharts(label)
     if (currentChart != 'defaultchart'){
         document.getElementById("backbutton").style.display = 'block';
+        
+    }
+    else{
+        document.getElementById("backbutton").style.display = 'none';
     }
 };
 
