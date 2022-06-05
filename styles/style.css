@@ -1,7 +1,11 @@
 body{
     gap: 70px;
-    background-image: linear-gradient(rgb(255, 193, 226), rgb(255, 255, 255));
+    background-image: linear-gradient(#FFBCCE, rgb(255, 255, 255));
     background-size: 100px;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    grid-template-areas: "header" "main_content" "footer";
+    font-family: "Comic Sans MS", "Comic Sans";
 }
 
 header{
@@ -28,7 +32,7 @@ h1#logo{
 #description{
     grid-area: description;
     text-align: center;
-    color: rgb(221, 91, 154);
+    color: #FF6790;
     padding-top: 3%;
     padding-left: 17%;
     padding-right: 17%;
@@ -66,7 +70,7 @@ h1#logo{
 
 #footer{
     grid-area: footer;
-    color: rgb(255, 124, 187);
+    color: #FF6790;
     font-family: "Comic Sans MS", "Comic Sans";
     font-weight: 400;
     font-size: small;
@@ -83,9 +87,11 @@ h1#logo{
     grid-area: main_content;  
     padding-left: 10vh;
     padding-right: 10vh;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "main_map slideshow";
+    grid-template-columns: .7fr .7fr;
+    grid-template-rows: .5fr .5fr;
+    grid-template-areas: "main_map chartarea" "description description";
     display: grid;
+    /* overflow-y: scroll; */
 }
 
 
@@ -98,8 +104,9 @@ h2{
 }
 
 #the_map{
-    height:80vh;
+    /* height:80vh; */
     width:110vh;
+    height:100vh;
     grid-area: main_map;
 }
 .surveybutton{
@@ -122,62 +129,30 @@ h2{
   -webkit-user-select: none;
   touch-action: manipulation;
   font-family: "Comic Sans MS", "Comic Sans";
-  color: rgb(255, 124, 187);
+  color: #FF6790;
 }
-/* Slideshow container */
-.slideshow-container {
-    grid-area: slideshow;
-    height: 80vh;
-    position: relative;
-    overflow: auto;
-    background: rgb(255, 255, 255);
-  }
-  
-  /* Slides */
-  .mySlides {
-    display: none;
-    padding: 57px;
-    text-align: center;
-    text-justify: auto;
-    font-family: "Comic Sans MS", "Comic Sans";
-  }
-
-  .myText {
-    text-align: left;
-    text-justify: auto;
-    font-size: 100%;
-  }
-  
-  /* Next & previous buttons */
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -30px;
-    padding: 16px;
-    color: rgb(255, 124, 187);
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-  }
-  
-  /* Position the "next button" to the right */
-  .next {
-    position: absolute;
-    right: 0;
-    border-radius: 3px 0 0 3px;
-  }
-  
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover, .next:hover {
-    background-color: rgba(4, 18, 0, 0.8);
-    color: rgb(255, 124, 187);
-  }
-  
-  q {font-style: italic;}
-
+.button{
+  padding: 15px 32px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #c2fbf8;
+border-radius: 100px;
+box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+color: green;
+cursor: pointer;
+display: inline-block;
+font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+text-align: center;
+text-decoration: none;
+transition: all 250ms;
+border: 0;
+font-size: 16px;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-family: "Comic Sans MS", "Comic Sans";
+color: #FF6790;
+}
 
 /* ///// MENU BAR ///// */
 
@@ -212,7 +187,7 @@ nav ul#main_menu li a
 	letter-spacing: 0px;
 	text-decoration: none;
     font-family: "Comic Sans MS", "Comic Sans";
-	color: rgb(255, 124, 187);
+	color: #FF6790;
 	font-size: 16px;
 	font-weight: 500;
 	display: inline-block;
@@ -272,7 +247,7 @@ nav ul#main_menu li a:hover:after
   
   /* The Close Button */
   .close {
-    color: rgb(255, 124, 187);
+    color: #FF6790;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -320,7 +295,7 @@ input[type=text], select, textarea {
     background-color: #c2fbf8;
   border-radius: 100px;
   box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-  color: rgb(255, 124, 187);
+  color: #FF6790;
   cursor: pointer;
   display: inline-block;
   text-align: center;
@@ -356,5 +331,36 @@ input[type=text], select, textarea {
 
   #information{
     background: #f2f2f2;
-    
+    grid-area: chartarea;
+    width: 450px;
   }
+ #chart-title{
+  text-align: center;
+  grid-area: description;
+    text-align: center;
+    color: #FF6790;
+    padding-top: 3%;
+    padding-left: 17%;
+    padding-right: 17%;
+    padding-bottom: 5%;
+    font-family: "Comic Sans MS", "Comic Sans";
+    line-height: 1.5;
+  }
+  #chart-title2{
+    text-align: center;
+  grid-area: description;
+    text-align: center;
+    color: #FF6790;
+    padding-top: 3%;
+    padding-left: 17%;
+    padding-right: 17%;
+    padding-bottom: 5%;
+    font-family: "Comic Sans MS", "Comic Sans";
+    line-height: 1.5;
+  }
+
+  #backbutton{
+    display: none;
+  }
+  
+  

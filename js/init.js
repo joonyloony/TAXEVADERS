@@ -18,9 +18,21 @@ let layers = {
 
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+var h = L.tileLayer('https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	minZoom: 0,
+	maxZoom: 22,
+	subdomains: 'abcd',
+	accessToken: '<your accessToken>'
+});
+L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+//L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+//}).addTo(map);
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgzJYv5patSDAIUAzaoz-tC7pCmrNRCJEopbJlOAVuLnkw0GFzTycLxJCwPh-pQqL4UItpy27X4prg/pub?output=csv"
 
@@ -33,12 +45,14 @@ let previousChart = ''
 let uclaboundary 
 
 var polygonOptions = {
-    fillColor: "#ff7800",
-    color: "#000",
+    fillColor: "#afeae7",
+    color: "#c2fbf8",
     weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
+    opacity: 0.5,
+    fillOpacity: 0.5
 };
+
+
 
 function getBoundary(layer){
     fetch(layer)
@@ -49,7 +63,7 @@ function getBoundary(layer){
                 // console.log(uclaboundary.getLatLngs())
                 // add the geojson to the map
 
-                uclaboundary = L.geoJson(data,{polygonOptions}).addTo(map);
+                uclaboundary = L.geoJson(data,{style: polygonOptions}).addTo(map);
         }
     )   
 }
@@ -205,26 +219,25 @@ function calculateSums(data){
             postgrad+=1;
             break;
     }
-    switch(data.whyjob){
-        case "To pay for housing and utilities/neccesities":
+    if(data.whyjob.includes("To pay for housing and utilities/neccesities")){
             neccesities+=1;
-            break;
-        case "To have extra income for pleasure (ex: going out, buying non-necessities)":
-            extraincome+=1;
-            break;
-        case "My parents told me to get a job":
-            parents+=1;
-            break;
-        case "Financial aid did not give me enough money to cover living costs":
-            finaid+=1;
-            break;
-        case "For resume experience":
-            resume+=1;
-            break;
-        case "I do work-study with UCLA/it was offered in my financial aid package":
-            workstudy+=1;
-            break;
     }
+    if(data.whyjob.includes("To have extra income for pleasure (ex: going out, buying non-necessities)")){
+            extraincome+=1;
+    }
+    if(data.whyjob.includes("My parents told me to get a job")){
+            parents+=1;
+    }
+    if(data.whyjob.includes("Financial aid did not give me enough money to cover living costs")){
+            finaid+=1;
+    }
+    if(data.whyjob.includes("For resume experience")){
+            resume+=1;
+    }
+    if(data.whyjob.includes("I do work-study with UCLA/it was offered in my financial aid package")){
+            workstudy+=1;
+    }
+    
     if (data.helpfulchanges.includes("Increase student-worker salaries")){
         workersalary+=1;
     }
@@ -301,7 +314,7 @@ function addMarker(data){
     else{
         inUclaText = "Off-Campus worker"
         outuclaCount+=1;
-        circleMarkerOptions.fillColor = "black"
+        circleMarkerOptions.fillColor = "#8FF0DE"
         offCampus.addLayer(L.circleMarker([data.lat,data.lng],circleMarkerOptions).bindPopup(`<p> ${inUclaText} and ${(surveyData["year"])} student</p><p>${surveyData["work"]}</p>`))
     }
     allData.push(surveyData)
@@ -346,7 +359,7 @@ window.onclick = function(event) {
   function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 }
-function changeCharts(target){
+function changeCharts(target,chartnumber=1){
     currentChart = target;
     console.log('changing chart to '+ currentChart)
     let theChartTarget = chartTriggers[target]
@@ -360,29 +373,34 @@ function changeCharts(target){
     //     case 'q3':
     //         currentChart = 'q3'
     // }
-    populateCharts(target)
+    populateCharts(target,chartnumber)
+
 }
 
 let chartTriggers ={
     "defaultChart":"",
     "On-Campus Workers" : "yearchart",
     "Off-Campus Workers":"yearchart",
-    "Parents told me to get a job":"whyjobChart",
-    "Financial aid did not give me enough money to cover living costs": "whyjobChart",
-    "For resume experience": "whyjobChart",
-    "I do work-study with UCLA/it was offered in my financial aid package": "whyjobChart",
-    "Greatest grievance with current/previously held job": "complaintsChart",
-    "Less tedious work":"complaintChart",
-    "Hire more people so we aren't short-staffed":"complaintChart",
-    "Improve student worker benefits":"complaintChart",
-    "Increase my financial aid":"complaintChart",
-    "Would like a job closer to my home":"complaintChart"
+    "Undergraduate":"whyjobChart",
+    "Nontraditional Undergraduate":"whyjobChart",
+    "Graduate":"whyjobChart", 
+    "Post-Graduate":"whyjobChart",
+    // "Parents told me to get a job":"whyjobChart",
+    // "Financial aid did not give me enough money to cover living costs": "whyjobChart",
+    // "For resume experience": "whyjobChart",
+    // "I do work-study with UCLA/it was offered in my financial aid package": "whyjobChart",
+    // "Greatest grievance with current/previously held job": "complaintsChart",
+    // "Less tedious work":"complaintChart",
+    // "Hire more people so we aren't short-staffed":"complaintChart",
+    // "Improve student worker benefits":"complaintChart",
+    // "Increase my financial aid":"complaintChart",
+    // "Would like a job closer to my home":"complaintChart"
 }
 
 let defaultChart = {
     "labels": ["On-Campus Workers", "Off-Campus Workers"],
     "datasets": [inuclaCount,outuclaCount],
-    "colors":["pink","black"],
+    "colors":["#FFBCCE","#8FF0DE"],
     "chartname": "defaultchart",
     "title":"On-Campus vs Off-Campus Workers"
 
@@ -390,36 +408,68 @@ let defaultChart = {
 let yearChart = {
     "labels": ["Undergraduate", "Nontraditional Undergraduate","Graduate", "Post-Graduate"],
     "datasets": [tradund,nontradund,grad,postgrad],
-    "chartname": "yearchart"
+    "colors":["#FFBCCE","black","#FF6790","#F01B55"],
+    "chartname": "yearchart",
+    "title":"Type of student"
 }
 let whyjobChart = {
-    "labels": ["Parents told me to get a job", "Financial aid did not give me enough money to cover living costs", "For resume experience", "I do work-study with UCLA/it was offered in my financial aid package"],
+    "labels": ["Parents told me to get a job", "Financial aid did not give me enough money to cover living costs", "For resume experience", "I do work-study with UCLA/it was offered in my financial aid package","To pay for housing and utilities/neccesities","To have extra income for pleasure (ex: going out, buying non-necessities)"],
+    "datasets":[parents, finaid, resume, workstudy, neccesities,extraincome],
+    "colors":["#ADFFF9","black","#2EFFEF","white","#209D94","#007169"],
     "chartname": "whyjobchart",
-    //TODO @joonyloony: add in the rest of the chart customizations, like colors, and 'datasets'
-    // "datasets": [tradund,nontradund,grad,postgrad],
-    // "title":"On-Campus vs Off-Campus Workers"
-
 }
+
 let complaintChart = {
     //TODO @joonyloony: add in the rest of the chart customizations, like colors, and 'datasets'
     // "datasets": [tradund,nontradund,grad,postgrad],
     // "title":"On-Campus vs Off-Campus Workers"
+    "labels":["Increase student-worker salaries","Increase work-study salaries","Lower required working hours per week","Less tedious work","Hire more people so we aren't short-staffed","Improve student worker benefits","Increase my financial aid","Would like a job closer to my home"],
+    "datasets":[workersalary,workstudysalary,lowerhours,lesstedious,hiremore,improvebenefits,finaidinc,jobcloser],
+    "colors":["#D9FFB2","#ABFF58","#7AE90C","#5FBD00","#468C00","#2E5B00","#1C3700","black"],
+    "chartname":"complaintchart",
+    "title":"Why did you get a job?",
+    "title2":"What would you like UCLA to change?"
 }
 
-function populateCharts(chartType){
+
+function populateCharts(chartType,chartnumber){
+     //resize map to fit screen
     console.log('populateCharts: '+chartType)
+    console.log('populateCharts: '+chartnumber)
     switch (chartType){
         case 'Off-Campus Workers':
             currentData = currentData.filter(data=>data.inucla=='no')
             addChart(yearChart,currentData)
+            map.fitBounds(offCampus.getBounds());
+            map.removeLayer(onCampus)
+            map.addLayer(offCampus)
             break;
         case 'On-Campus Workers':
             currentData = currentData.filter(data=>data.inucla=='yes')
             addChart(yearChart,currentData)
+            map.fitBounds(onCampus.getBounds());
+            map.removeLayer(offCampus)
+            map.addLayer(onCampus)
             break;
         case 'Undergraduate':
-            currentData = currentData.filter(data=>data.year=='Undergraduate')
+            currentData = currentData.filter(data=>data.year=='Traditional Undergraduate')
             addChart(whyjobChart,currentData)
+            addChart(complaintChart,currentData,2)
+            break;
+        case 'Graduate':
+            currentData = currentData.filter(data=>data.year=='Graduate')
+            addChart(whyjobChart,currentData)
+            addChart(complaintChart,currentData,2)
+            break;
+        case 'Nontraditional Undergraduate':
+            currentData = currentData.filter(data=>data.year=='Nontraditional Undergraduate')
+            addChart(whyjobChart,currentData)
+            addChart(complaintChart,currentData,2)
+            break;
+        case 'Post-Graduate':
+            currentData = currentData.filter(data=>data.year=='Post-Grad')
+            addChart(whyjobChart,currentData)
+           addChart(complaintChart,currentData,2)
             break;
         // todo: add the rest of the cases here!
         // case 'Graduate':
@@ -437,14 +487,19 @@ function populateCharts(chartType){
 
 let myChart
 let currentData
-function addChart(chartType,dataset){
+let mysecondchart
+
+function addChart(chartType,dataset,chartnumber=1){
+    map.invalidateSize(true);
     // reset counts
     resetAllCounts()
     
-    
+    document.getElementById("chart-title").innerHTML = `${chartType.title}`
+    document.getElementById("chart-title2").innerHTML = ``
     console.log('in add chart for:')
     console.log(chartType)
-
+    console.log('chartnumber')
+    console.log(chartnumber)
     let chartDataSet
     if (chartType.chartname == "defaultchart"){
         // albert: this sets the default chart to inuclacount and outuclacount after the data loads
@@ -455,10 +510,9 @@ function addChart(chartType,dataset){
         previousChart = currentChart;
         currentChart = chartType.chartname;
 
-        //remove the old chart
-        myChart.destroy()
-
-        // just a sanity check to make sure the chart is correct
+        if (chartnumber == 1){
+            myChart.destroy()
+        }
         console.log('this is the current dataset:')
         console.log(dataset)
 
@@ -473,13 +527,56 @@ function addChart(chartType,dataset){
                 chartDataSet = [tradund,nontradund,grad,postgrad]
                 console.log(chartDataSet)
                 break;
-            case 'whyjobChart':
-                chartDataSet = [neccesities,extraincome,parents,finaid,resume,workstudy];
+            case 'whyjobchart':
+                chartDataSet = [parents, finaid, resume, workstudy, neccesities,extraincome],
+                console.log('we are in the whyjob chart')
+                console.log(chartDataSet)
+                break;
+            case 'complaintchart':
+                chartDataSet=[workersalary,workstudysalary,lowerhours,lesstedious,hiremore,improvebenefits,finaidinc,jobcloser],
+                console.log(chartDataSet)
                 break;
             //todo: add the rest of the levels and cases here!
             // case 'complaintChart':
         }
     }
+        if (chartnumber == 2){
+            console.log(chartType.title2)
+            document.getElementById("chart-title2").innerHTML=`${chartType.title2}`
+           // create the new chart here, target the id in the html called "chart"
+            mysecondchart = new Chart(document.getElementById("secondchart"), {
+                type: 'pie', //can change to 'bar','line' chart or others
+                
+                data: {
+                    // labels for data here
+                    labels: chartType.labels,
+                    datasets: [
+                        {
+                        label: "Count",
+                        backgroundColor: chartType.colors,
+                        data: chartDataSet
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, //turn on responsive mode changes with page size
+                    maintainAspectRatio: false, // if `true` causes weird layout issues
+                    legend: { display: true },
+                    title: {
+                        display: true,
+                        text: 'Survey Respondants'
+                    },
+                    onClick(e) {
+                    }
+                },
+
+            });
+        
+        }
+        //remove the old chart
+        
+        // just a sanity check to make sure the chart is correct
+
     // set the chart data
 // create the new chart here, target the id in the html called "chart"
     myChart = new Chart(document.getElementById("chart"), {
@@ -518,7 +615,31 @@ document.getElementById("chart").onclick = function (evt) {
     var label = myChart.data.labels[activePoints[0].index];
     // var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
     changeCharts(label)
+    if (currentChart != 'defaultchart'){
+        document.getElementById("backbutton").style.display = 'block';
+    }
 };
+
+
+document.getElementById("secondchart").onclick = function (evt) {
+    var activePoints = mysecondchart.getElementsAtEventForMode(evt, 'point', mysecondchart.options);
+    var firstPoint = activePoints[0];
+    // console.log(activePoints[0].index)
+    console.log('the second chart is clicked')
+    var label = mysecondchart.data.labels[activePoints[0].index];
+    // var value = myChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+    changeCharts(label,2)
+};
+
+document.getElementById("backbutton").onclick = function (evt) {
+    myChart.destroy();
+    currentData = allData;
+    if (mysecondchart != null){
+        mysecondchart.destroy()
+        
+    }
+    addChart(defaultChart,allData)
+}
 
 function resetAllCounts(){
         
