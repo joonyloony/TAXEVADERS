@@ -620,7 +620,7 @@ function addChart(chartType,dataset,chartnumber=1){
 
     });
 }
-//document.getElementById("myBtn").click() // simulate click to start modal
+document.getElementById("myBtn").click() // simulate click to start modal
 
 document.getElementById("chart").onclick = function (evt) {
     var activePoints = myChart.getElementsAtEventForMode(evt, 'point', myChart.options);
