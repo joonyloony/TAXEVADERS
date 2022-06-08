@@ -54,11 +54,15 @@ At the top of our website, there is a menu bar which allows access to the home p
 
 Underneath our map and slideshow, there is another description about our project, including a short explanation of the community we hope to empower and what we hope these students gain from our website. Underneath, we have a short explanation of the anonymous nature of all of the data we have collected, and finally we have a short explanation of what we hope that this website can be used for in the future.
 
-5. **About the Creators Page**
+5 **Modal*
+
+This is a pop-up that triggers every time you refresh the main page. It gives a brief explanation of the goal of the website as well as a brief walkthrough of the purpose of the map. It also has a link to take the survey.
+
+6. **About the Creators Page**
 
 The About the Creators page allows users to learn more about the creators of the website, including why we chose to create this website and a little bit about our backgrounds. Users can also find our contact information on this page.
 
-6. **Contact Us Page**
+7. **Contact Us Page**
 
 The Contact Us page opens a form where users can share their name and some kind of comment, whether it is feedback, suggestions, or even compliments, and this information is shared with us, the creators.
 
@@ -67,10 +71,13 @@ The Contact Us page opens a form where users can share their name and some kind 
 1. **main page full screenshot**
 ![joonyloony github io_TAXEVADERS_index html (2)](https://user-images.githubusercontent.com/102616464/172525688-fe84c7cb-0934-4a97-88f8-675a05fc81ed.png)
 
-2. **about the creators**
+2. **modal**
+ <img width="1376" alt="image" src="https://user-images.githubusercontent.com/102616464/172526264-d65d3cc2-9a66-48e2-a89e-397a7a0acd65.png">
+
+3. **about the creators**
 ![joonyloony github io_TAXEVADERS_about html](https://user-images.githubusercontent.com/102616464/172525624-ee0b420f-6ee8-4680-b50c-359c99b9fd19.png)
 
-3. **contact us**
+4. **contact us**
 ![joonyloony github io_TAXEVADERS_contact html](https://user-images.githubusercontent.com/102616464/172525703-7730fcdd-9906-45b6-8314-7e8275ed86d8.png)
 
 
