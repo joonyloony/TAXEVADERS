@@ -62,6 +62,17 @@ The About the Creators page allows users to learn more about the creators of the
 
 The Contact Us page opens a form where users can share their name and some kind of comment, whether it is feedback, suggestions, or even compliments, and this information is shared with us, the creators.
 
+## Screenshots
+
+1. **main page full screenshot**
+![joonyloony github io_TAXEVADERS_index html (2)](https://user-images.githubusercontent.com/102616464/172525688-fe84c7cb-0934-4a97-88f8-675a05fc81ed.png)
+
+2. **about the creators**
+![joonyloony github io_TAXEVADERS_about html](https://user-images.githubusercontent.com/102616464/172525624-ee0b420f-6ee8-4680-b50c-359c99b9fd19.png)
+
+3. **contact us**
+![joonyloony github io_TAXEVADERS_contact html](https://user-images.githubusercontent.com/102616464/172525703-7730fcdd-9906-45b6-8314-7e8275ed86d8.png)
+
 
 ## Acknowledgements
 Thank you to Albert Kochaphum for teaching us everything we know about coding and community empowerment <3
