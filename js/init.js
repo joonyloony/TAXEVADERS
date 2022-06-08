@@ -29,12 +29,20 @@ var h = L.tileLayer('https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?acce
 // 	maxZoom: 20,
 // 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 // }).addTo(map);
-let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-	maxZoom: 16
-});
 
-Esri_WorldGrayCanvas.addTo(map);
+// let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+// 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+// 	maxZoom: 16
+// });
+
+// Esri_WorldGrayCanvas.addTo(map);
+
+var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+ });
+   
+ layer.addTo(map);
+
 
 //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     //attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -612,7 +620,7 @@ function addChart(chartType,dataset,chartnumber=1){
 
     });
 }
-//document.getElementById("myBtn").click() // simulate click to start modal
+document.getElementById("myBtn").click() // simulate click to start modal
 
 document.getElementById("chart").onclick = function (evt) {
     var activePoints = myChart.getElementsAtEventForMode(evt, 'point', myChart.options);
